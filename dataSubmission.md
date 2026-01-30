@@ -131,11 +131,11 @@ BIDS requires that electrodes position on the body be specified. For this, coord
 
 
 ### Channels.tsv 
-The channels.tsv file describes channel specific information. For example which channels in the data are derived from which signal and reference electrodes, measurement unit, the frequency of low pass and high pass filters used, etc. 
+The channels.tsv file describes channel specific information. For example which channels in the data are derived from which signal and reference electrodes, measurement units, the frequency of low pass and high pass filters used, etc. 
 
 - **name:** Name of a single channel. Can be any string containing letters and numbers. Every channel needs a unique name. 
 - **type:** Type of channel. Must be "EMG" or "MISC" or "TRIG". 
-- **unit:** Unit of measurement of the channel. 
+- **units:** Unit of measurement of the channel. 
 - **description:** Description of the channel. 
 - **signal_electrode:** Name of the signal electrode. Must match an electrode name specified in electrodes.tsv. 
 - **reference_electrode:** Name of the reference electrode. Must match an electrode name specified in electrodes.tsv, except for bipolar electrodes (such as fine-wire), use "bipolar" in this case. For data channels that do not come from electrodes (such as force data) use "n/a". 
@@ -159,9 +159,8 @@ If you have minor deviations from the intended experimental setup in some partic
 This section explains what to do once you have converted your dataset to a format admissible for submission. 
 
 ## Python checking script
-TODO 
-
-detects inconsistencies
+We provide a python script to check all your *.json* and *.tsv* files for internal consistiency and adherence to BIDS syntax and our requirements. 
+The hope is that this script is helpful in the process of creating your files, and leads to high dataset quality. However, the script does not check against every possible error that a dataset could contain, and therefore does not guarantee errorlessness. 
 
 ## Uploading your dataset 
 TODO 
