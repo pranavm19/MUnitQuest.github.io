@@ -1,10 +1,31 @@
 ---
 ---
 
-h1 {
-  color: darkblue;
+/* -------------------------
+   HEADER COLORS
+------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  color: #0b3d91; /* dark blue */
 }
 
-.content p {
-  text-align: justify;
+/* -------------------------
+   BODY FONT & LAYOUT
+------------------------- */
+body {
+  font-size: 18px;      /* Adjust font size */
+  line-height: 1.6;     /* Optional line spacing */
+  text-align: justify;   /* Block format */
 }
+
+/* -------------------------
+   LINKS
+------------------------- */
+a {
+  color: #0b3d91;
+}
+
+/* Optional: adjust paragraph spacing */
+p {
+  margin-bottom: 1.2em;
+}
+
