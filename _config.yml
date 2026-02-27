@@ -1,5 +1,5 @@
 # Set theme
-remote_theme: daviddarnes/alembic@main
+remote_theme: pages-themes/midnight@v0.2.0
 
 # File excludes
 exclude:
