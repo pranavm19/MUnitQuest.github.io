@@ -6,5 +6,7 @@ feature_text: |
 ---
 
 
-rules for competition 
+### Rules of participation 
+
+The competition is open to teams worldwide, with no restriction on team size. Each team must nominate a leader responsible for coordination, submission, and prize allocation. One submission per team is allowed in Phase 2.
 
