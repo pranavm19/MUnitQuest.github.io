@@ -1,0 +1,15 @@
+---
+---
+
+@import "remote-theme";  // imports Alembic CSS
+
+/* Your overrides below */
+h1, h2, h3, h4, h5, h6 {
+  color: #0b3d91; /* dark blue */
+}
+
+body {
+  font-size: 18px;
+  text-align: justify;
+  line-height: 1.6;
+}
