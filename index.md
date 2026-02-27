@@ -11,7 +11,7 @@ feature_text: |
 
 **MUnitQuest** aims to advance methods for reconstructing motor unit spike trains from high-density surface EMG (HDsEMG) through a community-driven competition by
 
-  1. Building a diverse, high-quality, openly shared HDsEMG database with labelled spike train
+  1. Building a diverse, high-quality, openly shared HDsEMG database with labelled spike trains
   2. Rigorously evaluate algorithms on this benchmark in a transparent, reproducible way
 
 The competition will address two distinct algorithmic challenges:
@@ -21,9 +21,9 @@ The competition will address two distinct algorithmic challenges:
 ### How does it work
 
 The competition is organised into three phases: 
-  - **Phase 0: Archive.** Community members contribute datasets (i.e., experimental or simulated HDsEMG data together with labelled spike trains), which are automatically standardised to the BIDS-EMG format and assessed via a double-blind review process. Quality assessment uses metrics and visualisations developed during Phase 0 to determine whether datasets enter the *Main track* (eligible for algorithm benchmarking) or the *Discovery track* (publicly available for testing and comparing algorithms, but not part of the competition). Finally, the *Main track* datasets are divided into training, validation, and test splits.
-  - **Phase 1: Forge.** Algorithm developers are provided with the *Main track* training and validation sets. The training set includes anonymised labels; the validation set is label-free, enabling submissions of predictions for leaderboard feedback. This phase supports iterative development and refinement of methods while maintaining the integrity of the final evaluation.
-  - **Phase 2: Showdown.** The top 10 algorithms from Phase 1 are invited to compete on a previously hidden test data set. Prize-eligible entries are required to submit code upon the end of the competition; submissions based on proprietary code are not eligible for awards. The final leaderboard is computed from test set performance and publicly released.
+  - **Phase 0: Archive.** Community members contribute datasets (i.e., experimental or simulated HDsEMG data together with labelled spike trains), which are automatically standardised to the [EMG-BIDS format](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/electromyography.html) and assessed via a double-blind review process.
+  - **Phase 1: Familiarization.** Algorithm developers are provided with training data (including labels), allowing teams to build, test, and optimize their motor unit identification frameworks.
+  - **Phase 2: Showdown.** The main competition is conducted using a previously hidden test data set (labels are hidden to competitors). Prize-eligible entries are required to share code upon the end of the competition; submissions based on proprietary code are not eligible for awards. The final leaderboard is computed from test set performance and publicly released.
 
 ### Awards
 
