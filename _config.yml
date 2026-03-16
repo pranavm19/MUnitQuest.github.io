@@ -7,6 +7,7 @@ exclude:
 - legalNotice.md
 - about.md
 - bids_example.md
+- algoSubmission.md
 - Gemfile
 - Gemfile.lock
 
@@ -46,10 +47,10 @@ navigation_header:
   url: /timeline/
 - title: Rules
   url: /rules/  
-- title: Data Submission
-  url: /dataSubmission/
-- title: Algorithm Submission
-  url: /algoSubmission/  
+- title: Submission and Registration
+  url: /registration_and_submission/
+#- title: Algorithm Submission
+#  url: /algoSubmission/  
 #- title: About
 #  url: /about/
 #- title: FAQ

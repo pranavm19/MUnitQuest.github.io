@@ -7,24 +7,30 @@ feature_text:
 
 ### Aims and scope 
 
-**MUnitQuest** aims to advance methods for reconstructing motor unit spike trains from high-density surface EMG (HDsEMG) through a community-driven competition by
-  1. Building a diverse, high-quality, openly shared HDsEMG database with labelled spike trains
-  2. Rigorously evaluating algorithms on this benchmark in a transparent, reproducible way
+**MUnitQuest** aims to advance methods for reconstructing motor unit spike trains from high-density surface EMG (HDsEMG) through a community-driven competition. The competition will address two distinct algorithmic challenges yielding two independent leaderboards:
+   - **Challenge A1: Isometric contractions.** Well-studied, stationary conditions for which multiple decomposition methods currently exist.
+   - **Challenge A2: Dynamic contractions.** Less studied, non-stationary conditions in which algorithmic performance remains limited, motivating the development of novel approaches and interactive exchange of ideas.
 
-The competition will address two distinct algorithmic challenges:
-   - **Challenge 1: Isometric contractions.** Well-studied, stationary conditions for which multiple decomposition methods currently exist.
-   - **Challenge 2: Dynamic contractions.** Less studied, non-stationary conditions in which algorithmic performance remains limited, motivating the development of novel approaches and interactive exchange of ideas.
+**MUnitQuest** is only possible if the competition data includes reliably labeled motor unit spike trains serving as references. We belive that this is only feasible through a commnity-based effort in collecting a diverse database consiting of experimental data and realsitic simulations. We acknowledge this need through an additional challange:
+  - **Challenge D: Competition data.** Inovative approaches for obtaining high-quality data and labels for the validation and rigorous performance evaluation of neural source separation algorithms (assessed by a panel of experts).
+
+### Who is it for
+
+  - **Challenge A1 and A2** are intended for **algorithm developers** working on computional methods that can reconstruct the activity of single neurons from complex mixtures.
+  - **Challenge D** is targeted at **experimental resreachers** who use HDsEMG and **simulation scientists** developing electrophysiological models that want to apply their methods in a highly relevant field of applied neuromuscualar reserach.       
 
 ### How does it work
 
-The competition is organised into three phases: 
-  - **Phase 0: Archive.** Community members contribute datasets (i.e., experimental or simulated HDsEMG data together with labelled spike trains), which are automatically standardised to the [EMG-BIDS format](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/electromyography.html) and assessed via a double-blind review process.
-  - **Phase 1: Familiarization.** Algorithm developers are provided with training data (including labels), allowing teams to build, test, and optimize their motor unit identification frameworks.
-  - **Phase 2: Showdown.** The main competition is conducted using a previously hidden test data set (labels are hidden to competitors). Prize-eligible entries are required to share code at the end of the competition; submissions based on proprietary code are not eligible for awards. The final leaderboard is computed from test set performance and publicly released.
+The competition is organised into three phases (also see the [competition timeline](https://munitquest.github.io/timeline/)): 
+  - **Phase 0: Archive.** Community members contribute datasets (i.e., experimental or simulated HDsEMG data together with labeled spike trains), which are automatically standardised to the [EMG-BIDS format](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/electromyography.html) and assessed via a double-blind review process.
+  - **Phase 1: Familiarization.** Algorithm developers are provided with training data from the [MUniverse benchmark collection](https://openreview.net/pdf?id=Slrp3l7aYo) (including labels), allowing teams to build, test, and optimize their neural source separation methods.
+  - **Phase 2: Showdown.** The main competition is conducted using the data collection established in **Phase 0** (whereby labels are hidden to competitors). Prize-eligible entries are required to share code at the end of the competition; submissions based on proprietary code are not eligible for awards. The final leaderboard is computed from test set performance and publicly released.
+
+
 
 ### Awards
 
-Teams receive recognition on a permanent leaderboard (online), and the top 5 teams per algorithmic challenge, as well as the top 5 dataset contributions, will be invited to share their solutions in a *special issue* of the [Journal of Electromyography and Kinesiology](https://www.sciencedirect.com/journal/journal-of-electromyography-and-kinesiology).
+All teams participating in challenges **A1** and **A2** receive recognition on a permanent leaderboard (online) and all contributions from **Challenge D** will be published according to the FAIR (Findable, Accessible, Interoperable, Reusable) principles in an open data repository. Furthermore, the top 5 teams per algorithmic challenge, as well as the top 5 dataset contributions, will be invited to share their solutions in a *special issue* of the [Journal of Electromyography and Kinesiology](https://www.sciencedirect.com/journal/journal-of-electromyography-and-kinesiology).
 
 ### Motivation and background
 
@@ -57,4 +63,7 @@ Since the development of the concentric needle by Adrian and Bronk nearly 100 ye
 - Robin Rohlen ([📧](mailto:r.rohlen@imperial.ac.uk))
 - Oliver Röhrle ([📧](mailto:roehrle@simtech.uni-stuttgart.de))
 - Dario Farina ([📧](mailto:d.farina@imperial.ac.uk))
+
+### Contributors
+- Niklas Enslin
 

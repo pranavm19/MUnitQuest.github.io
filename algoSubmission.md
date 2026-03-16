@@ -4,9 +4,12 @@ feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.i
 feature_text: 
 ---
 
-### Registration and Algorithm Submission 
+### Registration 
 
-Coming soon.
+Before submitting your predictions you must register your team (coming soon).
+
+### Algorithm Submission 
+
 
 
 ### Leaderboard
