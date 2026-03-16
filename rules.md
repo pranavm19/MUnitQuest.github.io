@@ -11,8 +11,7 @@ The competition is open to teams worldwide, with no restriction on team size. Ea
 
 ### Challange D: Data review
 
-To ensure the quality of the datasets used for the competition, we plan to conduct a double-blind review
-process by recruiting an expert panel (10-12 persons) that rates the datasets based on a set of pre-defined
+To ensure the quality of the datasets used for **Challenges A1** and **A2**, and to obtain the scoring of **Challenge D** we plan to conduct a double-blind review process by recruiting an expert panel (10-12 persons) that rates the datasets based on a set of pre-defined
 criteria:
 
 - **Metadata and provenance** – verifies that submissions satisfy [CEDE](https://cede.isek.org/) reporting matrices, thereby

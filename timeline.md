@@ -11,18 +11,18 @@ Here we summarize key dates and the competition timeline.
 | 01/06/2026     | **Phase 0:** The data submission opens |
 | 15/06/2026     | **Phase 1:** The submission system for the familarization phase opens |
 | 25/06/2026     | **MUnitQuest Symposium at ISEK2026** (10:00 - 11:30, CET) |
-| 15/09/2026     | **Phase 0:** The data system closes (23:59, CET) |
+| 15/09/2026     | **Phase 0:** The data submission system (**Challenge D**) closes (23:59, CET) |
 | 30/06/2026     | **Phase 1:** The submission system for the familarization phase closes |
 | 15/10/2026     | **Data evaluation completed** |
 | 01/11/2026     | **Phase 2:** The showdown phase starts by releasing the competition data |
-| 31/12/2026     | **Phase 2:** The submission portal of the algorithm competition closes (23:59, CET) |
+| 31/12/2026     | **Phase 2:** The submission portal of the algorithm competition (**Challenges A1 and A2**) closes (23:59, CET) |
 | 15/01/2027     | **The final leaderboards are announced** |
 
 
 ### Details about Phase 0 (Archive)
 
 - Community members collect experimental and simulated HDsEMG data together with motor unit spike train labels
-- Datasets need to be submitted through the data submission portal (see [Data Submission]())
+- Datasets need to be submitted through the data submission portal (see [Data Submission](https://munitquest.github.io/registration_and_submission/))
 - After the competition is completed, data is relesead on a open data repository
 - As part of **Challange D** an expert reviewer panel evaluates each dataset contribution
 - Outstanding data contributions (top 5, rated by an expert reviewer panel) are invited to contribute to a special issue in the [Journal of Electromyography and Kinesiology](https://www.sciencedirect.com/journal/journal-of-electromyography-and-kinesiology) (for awarded teams a public release of their data is mandatory)

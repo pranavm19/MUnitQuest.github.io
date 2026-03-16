@@ -16,7 +16,7 @@ For obtaining a diverse competition data collection that balances relism and lab
 ![Submission Requirements](/Images/submissionRequirements.jpg)
 
 - **EMG data and metadata:** We will provide the EMG data entering the competition in the standardized [EMG-BIDS](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/electromyography.html) format. To make getting started with EMG-BIDS as easy as possible, we support two options for your data submission:
-    - Upload of EMG-BIDS-formatted data, which we facilitate by providing template files that you can adopt according to your specific recording setup
+    - Upload of EMG-BIDS-formatted data, which we facilitate by providing tutorials (coming soon) that you can adopt according to your specific recording setup
     - Assisted generation of EMG-BIDS compatible metadata files through a web interface (coming soon)
 
 - **Labeled Motor Unit Spike Trains:** A key requirement for a competition on motor unit identification methods is the availability of labeled ground truth spikes. Thus, we additionally require submitting:
