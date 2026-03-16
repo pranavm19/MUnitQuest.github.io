@@ -7,22 +7,7 @@ feature_text:
 
 ### Rules of participation 
 
-The competition is open to teams worldwide, with no restriction on team size. Each team must nominate a leader responsible for coordination and submission. Each person may only belong to one team. Each registered team my submit one contribution (i.e., dataset or algorithm prediction) per challenge.
-
-### Algorithm submission
-This is a prediction submission competition. You will be asked to upload, for each recording, a tabular file (*.tsv*) containing your predicted motor unit spikes (BIDS-events file). Nevertheless, to be eligible for awards, you need to openly share your code (e.g., via GitHub). 
-
-Here is a minimal example of the submission format:    
-
-| **onset** | **duration** | **sample** | **unit_id** | **event_description** |
-| --------- | ------------ | ---------- | ----------- | ----------------------|
-| 0.001     | 0            | 1          | 0           | Motor-unit-spike      |
-| 0.005     | 0            | 5          | 1           | Motor-unit-spike      |
-| 0.011     | 0            | 11         | 0           | Motor-unit-spike      |
-| 0.012     | 0            | 12         | 2           | Motor-unit-spike      |
-| 0.016     | 0            | 16         | 1           | Motor-unit-spike      |
-| ...       | ...          | ...        | ...         | ...      |
-
+The competition is open to teams worldwide, with no restriction on team size. Each team must nominate a leader responsible for coordination and submission. Each person may only belong to one team. Each registered team may submit one contribution (a dataset or an algorithmic prediction) per challenge.
 
 ### Challange D: Data review
 
@@ -35,15 +20,15 @@ guaranteeing reproducibility and downstream re-use.
 - **Raw-signal quality** – gauges whether the HDsEMG signals are “decomposition-ready”. Key metrics
 include the baseline noise of each channel, residual power-line interference at 50/60 Hz, and the
 fraction of bad channels.
-- **Label quality** – evaluates the quality and trustworthiness of the labeled motor unit spike trains. This includes the labeling approach (e.g., simultaneous invasive EMG) together with established trustworthiness measures such as the silhouette score or the interspike-interval variability. 
-- **Diversity** – rewards datasets that expand anatomical, functional and demographic coverage. Expe-
+- **Label quality** – evaluates the quality and trustworthiness of the labeled motor unit spike trains. This includes the labeling approach (e.g., simultaneous invasive EMG) as well as established trustworthiness measures such as the silhouette score and interspike-interval variability. 
+- **Diversity** – rewards datasets that expand anatomical, functional, and demographic coverage. Expe-
 rienced reviewers rate the novelty of submissions in terms of recorded muscles, tasks, and recording
 configurations, including pathological as well as healthy cohorts, and balancing biological sex and age.
 
 **Additional considerations for synthetic data:**
 For simulations, the data quality can be precisely controlled, and spike train labels represent an unequivocal
 ground truth. Hence, during the data review phase, the review panel will evaluate the realism of the
-simulated spike trains as well as the underlying muscle model. 
+simulated spike trains and the underlying muscle model. 
 
 
 ### Challenge A1: Leaderboard
