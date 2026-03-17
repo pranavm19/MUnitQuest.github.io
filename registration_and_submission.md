@@ -1,5 +1,5 @@
 ---
-title: Registration and Submissions
+title: Registration and submissions
 feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/header2.jpeg"
 feature_text: 
 ---
@@ -19,16 +19,15 @@ For obtaining a diverse competition data collection that balances relism and lab
     - Upload of EMG-BIDS-formatted data, which we facilitate by providing tutorials (coming soon) that you can adopt according to your specific recording setup
     - Assisted generation of EMG-BIDS compatible metadata files through a web interface (coming soon)
 
-- **Labeled Motor Unit Spike Trains:** A key requirement for a competition on motor unit identification methods is the availability of labeled ground truth spikes. Thus, we additionally require submitting:
-    - for each recording, a *.tsv* file (BIDS-events file, see example below) containing the labeled motor unit spike trains 
-    - a short description (2-page PDF) of the utilized labelling approach (for experimental EMG data)
-    - or a short description (2-page PDF) of the simulation model (for synthetic EMG data)
+- **Labeled motor unit spike trains:** A key requirement for a competition on motor unit identification methods is the availability of labeled ground truth spikes. Thus, we additionally require submitting:
+    1. for each recording, a *.tsv* file (BIDS-events file, see example below) containing the labeled motor unit spike trains 
+    2. a short description (2-page PDF) of the utilized labelling approach (for experimental EMG data) or the utilized simulation model (for synthetic EMG data)
 
 Further details are comming soon.    
 
 ### Algorithm submission   
 
-This is a prediction submission competition. During both **Phase 1** and **Phase 2** you will be asked to upload, for each recording, a tabular file (*_events.tsv*) containing your predicted motor unit spikes (BIDS-events file) together with a *_log.json* file describing essential process metadata (further details to be announced). To be eligible for awards, you need to openly share your code (e.g., via GitHub). 
+This is a prediction submission competition. During both **Phase 1** and **Phase 2** you will be asked to upload, for each recording, a tabular file (*recordingName_events.tsv*) containing your predicted motor unit spikes (BIDS-events file) together with a *recordingName_log.json* file describing essential process metadata (further details to be announced). To be eligible for awards, you need to openly share your code (e.g., via GitHub). 
 
 
 ### Example: how to report motor unit spike trains
