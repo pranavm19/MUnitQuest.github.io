@@ -54,7 +54,7 @@ Since the development of the concentric needle by Adrian and Bronk nearly 100 ye
 
 ### Partners and supporters
 
-- Become a partner! Get in touch if you want to contribute to our efforts 🙏
+- Become a partner! Get in touch ([📧](mailto:MUnitQuest@outlook.com)) if you want to contribute to our efforts 🙏
 
 ### Core coordinators
 
