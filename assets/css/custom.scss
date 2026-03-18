@@ -6,6 +6,16 @@
 ------------------------- */
 h1, h2, h3, h4, h5, h6 {
   color: #0b3d91; /* dark blue */
+
+  a {
+    color: inherit;           // links inherit the header color by default
+    text-decoration: none;    // remove underline initially
+
+    &:hover {
+      color: #ff6600;         // color when hovering
+      text-decoration: underline; // optional: underline on hover
+    }
+  }
 }
 
 /* -------------------------
