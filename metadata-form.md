@@ -182,6 +182,49 @@ layout: page
         <h2>Participant Information</h2>
 
         <div class="mf-form-group">
+            <label>Subjects *</label>
+
+            <div id="subjectsList">
+                <div class="mf-subject-entry">
+                    <div class="mf-subject-fields">
+
+                        <div class="mf-field-row">
+                            <span class="mf-field-label">Name</span>
+                            <input type="text" name="subjects_name[]" placeholder="Subject Name" required>
+                        </div>
+
+                        <div class="mf-field-row">
+                            <span class="mf-field-label">Age</span>
+                            <input type="number" name="subjects_age[]" placeholder="Age" min="0" required>
+                        </div>
+
+                        <div class="mf-field-row">
+                            <span class="mf-field-label">Height</span>
+                            <input type="number" name="subjects_height[]" placeholder="cm" min="0" step="0.1">
+                        </div>
+
+                        <div class="mf-field-row">
+                            <span class="mf-field-label">Weight</span>
+                            <input type="number" name="subjects_weight[]" placeholder="kg" min="0" step="0.1">
+                        </div>
+
+                        <button type="button"
+                                class="mf-btn-remove"
+                                onclick="removeSubject(this)"
+                                style="display:none;">
+                            Remove
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="mf-btn-secondary" onclick="addSubject()">
+                + Add Subject
+            </button>
+        </div>
+
+        <div class="mf-form-group">
             <label for="numParticipants">Number of Participants *</label>
             <input type="number" id="numParticipants" name="numParticipants" min="1" required>
         </div>

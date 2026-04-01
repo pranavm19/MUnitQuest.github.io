@@ -132,6 +132,81 @@ function removeAuthor(button) {
     button.parentElement.remove();
 }
 
+// Subjects management
+function addSubject() {
+    const subjectsList = document.getElementById('subjectsList');
+
+    const newEntry = document.createElement('div');
+    newEntry.className = 'mf-subject-entry';
+
+    newEntry.innerHTML = `
+        <div class="mf-subject-header">Subject</div>
+
+        <div class="mf-subject-fields">
+
+            <div class="mf-field-row">
+                <span class="mf-field-label">Name</span>
+                <input type="text" name="subjects_name[]" required>
+            </div>
+
+            <div class="mf-field-row">
+                <span class="mf-field-label">Age</span>
+                <input type="number" name="subjects_age[]" required>
+            </div>
+
+            <div class="mf-field-row">
+                <span class="mf-field-label">Height</span>
+                <input type="number" name="subjects_height[]">
+            </div>
+
+            <div class="mf-field-row">
+                <span class="mf-field-label">Weight</span>
+                <input type="number" name="subjects_weight[]">
+            </div>
+
+            <button type="button"
+                    class="mf-btn-remove"
+                    onclick="removeSubject(this)">
+                Remove
+            </button>
+
+        </div>
+    `;
+
+    subjectsList.appendChild(newEntry);
+
+    updateSubjectNumbers();
+    updateSubjectRemoveButtons();
+}
+
+function removeSubject(button) {
+    const entry = button.closest('.mf-subject-entry');
+
+    if (!entry) return;
+
+    entry.remove();
+
+    updateSubjectNumbers();
+    updateSubjectRemoveButtons();
+}
+
+function updateSubjectNumbers() {
+    const entries = document.querySelectorAll('.mf-subject-entry');
+
+    entries.forEach((entry, index) => {
+        let header = entry.querySelector('.mf-subject-header');
+
+        // If missing (safety fix)
+        if (!header) {
+            header = document.createElement('div');
+            header.className = 'mf-subject-header';
+            entry.prepend(header);
+        }
+
+        header.textContent = `Subject ${index + 1}`;
+    });
+}
+
 // Get the list of visible section numbers (data-section attributes) for navigation
 function getVisibleSections() {
     const syntheticSelected = document.querySelector('input[name="dataType"]:checked');
