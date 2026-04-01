@@ -188,103 +188,42 @@ function addReference() {
 }
 
 // Subjects management
+const subjectSchema = [
+    { name: "participant_id", type: "text", placeholder: "Unique subject ID, e.g., 01" },
+    { name: "age", type: "number", placeholder: "Age in years" },
+    { name: "height", type: "number", placeholder: "Height in cm" },
+    { name: "weight", type: "number", placeholder: "Weight in kg" }
+];
+
 function addSubject() {
-    const subjectsList = document.getElementById('subjectsList');
-
-    const newEntry = document.createElement('div');
-    newEntry.className = 'mf-subject-entry';
-
-    newEntry.innerHTML = `
-        <div class="mf-subject-header">Subject</div>
-
-        <div class="mf-subject-fields">
-
-            <div class="mf-field-row">
-                <span class="mf-field-label">Name</span>
-                <input type="text" name="participant_id[]" required>
-            </div>
-
-            <div class="mf-field-row">
-                <span class="mf-field-label">Age</span>
-                <input type="number" name="subjects_age[]" required>
-            </div>
-
-            <div class="mf-field-row">
-                <span class="mf-field-label">Height</span>
-                <input type="number" name="subjects_height[]">
-            </div>
-
-            <div class="mf-field-row">
-                <span class="mf-field-label">Weight</span>
-                <input type="number" name="subjects_weight[]">
-            </div>
-
-            <button type="button"
-                    class="mf-btn-remove"
-                    onclick="removeSubject(this)">
-                Remove
-            </button>
-
-        </div>
-    `;
-
-    subjectsList.appendChild(newEntry);
-
-    updateSubjectNumbers();
-    updateSubjectRemoveButtons();
+    addListItem("subjectsList", subjectSchema, "mf-subject-entry", "Subject");
 }
 
-function removeSubject(button) {
-    const entry = button.closest('.mf-subject-entry');
+// MISC channels
+const miscSchema = [
+    { name: "description", type: "text", placeholder: "e.g., torque signal or requested task profile" },
+    { name: "units", type: "text", placeholder: "Unit of the measurement, e.g., V or % MVC"}
+];
 
-    if (!entry) return;
-
-    entry.remove();
-
-    updateSubjectNumbers();
-    updateSubjectRemoveButtons();
-}
-
-function updateSubjectNumbers() {
-    const entries = document.querySelectorAll('.mf-subject-entry');
-
-    entries.forEach((entry, index) => {
-        let header = entry.querySelector('.mf-subject-header');
-
-        // If missing (safety fix)
-        if (!header) {
-            header = document.createElement('div');
-            header.className = 'mf-subject-header';
-            entry.prepend(header);
-        }
-
-        header.textContent = `Subject ${index + 1}`;
-    });
-}
-
-// Subjects management
 function addMISC() {
-    const subjectsList = document.getElementById('miscList');
-
-    const newEntry = document.createElement('div');
-    newEntry.className = 'misc-entry';
-
-    newEntry.innerHTML = `
-        <div class="misc-fields">
-            <input type="text" name="description[]" placeholder="Anlke torque or requested effort trajetory" required>
-            <input type="text" name="units[]" placeholder="e.g., V or % MVC" required>
-
-            <button type="button" class="mf-btn-remove" onclick="removeMISC(this)">
-                Remove
-            </button>
-        </div>
-    `;
-
-    miscList.appendChild(newEntry);
+    addListItem("miscList", miscSchema, "mf-misc-entry", "MISC");
 }
 
-function removeMISC(button) {
-    button.closest('.misc-entry').remove();
+// HDsEMG arrays
+const HDsEMGSchema = [
+    { name: "manufacturer", type: "text", placeholder: "Electrode manufacturer, e.g., OTBioelettronica" },
+    { name: "manufacturersModelName", type: "text", placeholder: "Manufacturer's model name, e.g., GR04MM1305"},
+    { name: "interelectrode_distance", type: "number", min: 0, step:0.1, placeholder: "Interelectrode distance in mm"},
+    { name: "numChannels", type: "number", min:1, step:1, placeholder: "Number of channels in that grid"},
+    { name: "material", type: "text", placeholder: "Electrode material, e.g., gold or Ag/AgCl"},
+    { name: "targetMuscle", type: "text", placeholder: "Muscle (or muscle group) the electrode records from, e.g., right tibialis anterior"},
+    { name: "lowCutOff", type: "number", placeholder: "Cut-off frequency in Hz"},
+    { name: "highCutOff", type: "number", placeholder: "Cut-off frequency in Hz"},
+    { name: "reference", type: "text", placeholder: "Name of the electrode used for referencing"},
+];
+
+function addHDsEMG() {
+    addListItem("HDsEMGList", HDsEMGSchema, "mf-misc-entry", "HDsEMG");
 }
 
 // Get the list of visible section numbers (data-section attributes) for navigation

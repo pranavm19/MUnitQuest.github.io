@@ -192,106 +192,14 @@ layout: page
         <h2>Participant Information</h2>
 
         <div class="mf-form-group">
-            <label>Subjects *</label>
+            <label>Subjects</label>
+            <div id="subjectsList"></div>
 
-            <div id="subjectsList">
-                <div class="mf-subject-entry">
-                    <div class="mf-subject-fields">
-
-                        <div class="mf-field-row">
-                            <span class="mf-field-label">Name</span>
-                            <input type="text" name="participant_id[]" placeholder="Participant ID" required>
-                        </div>
-
-                        <div class="mf-field-row">
-                            <span class="mf-field-label">Age</span>
-                            <input type="number" name="subjects_age[]" placeholder="Age" min="0" required>
-                        </div>
-
-                        <div class="mf-field-row">
-                            <span class="mf-field-label">Height</span>
-                            <input type="number" name="subjects_height[]" placeholder="cm" min="0" step="0.1">
-                        </div>
-
-                        <div class="mf-field-row">
-                            <span class="mf-field-label">Weight</span>
-                            <input type="number" name="subjects_weight[]" placeholder="kg" min="0" step="0.1">
-                        </div>
-
-                        <button type="button"
-                                class="mf-btn-remove"
-                                onclick="removeSubject(this)"
-                                style="display:none;">
-                            Remove
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" class="mf-btn-secondary" onclick="addSubject()">
+            <button type="button" class="mf-btn-secondary" onclick="addSubject('subjectsList')">
                 + Add Subject
             </button>
-        </div>
+        </div>         
 
-        <div class="mf-form-group">
-            <label for="numParticipants">Number of Participants *</label>
-            <input type="number" id="numParticipants" name="numParticipants" min="1" required>
-        </div>
-
-        <div class="mf-form-group">
-            <label>Age Range</label>
-            <div class="mf-range-inputs">
-                <input type="number" id="ageMin" name="ageMin" placeholder="Min" min="18" max="100">
-                <span>to</span>
-                <input type="number" id="ageMax" name="ageMax" placeholder="Max" min="18" max="100">
-                <span>years</span>
-            </div>
-        </div>
-
-        <div class="mf-form-group">
-            <label>Biological Sex Distribution</label>
-            <div class="mf-checkbox-group">
-                <label>
-                    <input type="checkbox" name="sexFemale" id="sexFemale">
-                    Female
-                    <input type="number" id="femaleCount" name="femaleCount" placeholder="Count" min="0" style="width:80px; margin-left:10px;">
-                </label>
-                <label>
-                    <input type="checkbox" name="sexMale" id="sexMale">
-                    Male
-                    <input type="number" id="maleCount" name="maleCount" placeholder="Count" min="0" style="width:80px; margin-left:10px;">
-                </label>
-                <label>
-                    <input type="checkbox" name="sexOther" id="sexOther">
-                    Other/Prefer not to say
-                    <input type="number" id="otherCount" name="otherCount" placeholder="Count" min="0" style="width:80px; margin-left:10px;">
-                </label>
-            </div>
-        </div>
-
-        <div class="mf-form-group">
-            <label>Health Status *</label>
-            <div class="mf-radio-group">
-                <label>
-                    <input type="radio" name="healthStatus" value="healthy" required>
-                    Healthy controls only
-                </label>
-                <label>
-                    <input type="radio" name="healthStatus" value="pathological">
-                    Pathological cohort only
-                </label>
-                <label>
-                    <input type="radio" name="healthStatus" value="mixed">
-                    Mixed (healthy + pathological)
-                </label>
-            </div>
-        </div>
-
-        <div class="mf-form-group" id="pathologicalConditionsGroup" style="display:none;">
-            <label for="pathologicalConditions">Specify Pathological Conditions</label>
-            <input type="text" id="pathologicalConditions" name="pathologicalConditions">
-        </div>
     </section>
 
     <!-- Section 5: Recording Information -->
@@ -340,7 +248,28 @@ layout: page
             <input type="number" id="lowPassFilter" name="lowPassFilter" required>
         </div>
 
+        <h3>Preparation</h3>
+
+        <div class="mf-form-group">
+            <label for="skinPreparation">Skin Preparation</label>
+            <input type="text" id="skinPreparation" name="skinPreparation" placeholder="Method used to precondition the skin.">
+        </div>
+
+        <div class="mf-form-group">
+            <label for="placementSchemeDescription">EMG Placement Scheme Description</label>
+            <input type="text" id="placementSchemeDescription" name="placementSchemeDescription" placeholder="Free text describing the method used to position your grids.">
+        </div>
+
         <h3>Electrode Configuration</h3>
+
+        <div class="mf-form-group">
+            <label>HDsEMG</label>
+            <div id="HDsEMGList"></div>
+
+            <button type="button" class="mf-btn-secondary" onclick="addHDsEMG('HDsEMGList')">
+                + Add HDsEMG
+            </button>
+        </div> 
 
         <div class="mf-form-group">
             <label for="emgChannelCount">EMG Channel Count *</label>
@@ -411,31 +340,14 @@ layout: page
             <input type="text" id="emgGround" name="emgGround" placeholder="e.g., wrist, electrode on patella" required>
         </div>
 
-        <h3>MISC Channels</h3>
-
         <div class="mf-form-group">
-            <label>MISCs *</label>
+            <label>MISC Channels</label>
+            <div id="miscList"></div>
 
-            <div id="subjectsList">
-                <div class="mf-misc-entry">
-                    <div class="mf-misc-fields">
-                        <input type="text" name="description[]" placeholder="Anlke torque or requested effort trajetory" required>
-                        <input type="text" name="units[]" placeholder="e.g., V or % MVC" required>
-
-                        <button type="button"
-                                class="mf-btn-remove"
-                                onclick="removeMISC(this)"
-                                style="display:none;">
-                            Remove
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" class="mf-btn-secondary" onclick="addMISC()">
+            <button type="button" class="mf-btn-secondary" onclick="addMISC('miscList')">
                 + Add MISC
             </button>
-        </div>
+        </div>   
 
     </section>
 
