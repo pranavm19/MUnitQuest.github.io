@@ -11,15 +11,15 @@ Here we summarize key dates and the competition timeline.
 
 | **Date**       | **Event** |
 | -------------- | ----------- |
-| 01/06/2026     | **Phase 0:** The data submission opens |
+| 01/06/2026     | **Phase 0:** The data submission opens :op |
 | 15/06/2026     | **Phase 1:** The submission portal for the familarization phase opens |
-| 25/06/2026     | **MUnitQuest Symposium at ISEK2026** (10:00 - 11:30, CET) |
+| 25/06/2026     | **MUnitQuest Symposium at ISEK2026** (12:30 - 14:00, CET) |
 | 15/09/2026     | **Phase 0:** The data submission system (**Data challenge**) closes (23:59, CET) |
 | 30/06/2026     | **Phase 1:** The submission portal for the familarization phase closes |
 | 15/10/2026     | **Data evaluation completed** |
 | 01/11/2026     | **Phase 2:** The showdown phase starts by releasing the *MUnitQuest data colletion* |
 | 31/12/2026     | **Phase 2:** The algorithm submission portal (**Isometric** and **Dynamic challenge**) closes (23:59, CET) |
-| 15/01/2027     | **The awards are announced and final leaderboards are published** |
+| 15/01/2027     | **The awards are announced and final leaderboards are published** 🏆 |
 
 </div>
 
