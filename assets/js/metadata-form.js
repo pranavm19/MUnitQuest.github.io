@@ -116,21 +116,237 @@ function toggleContractionFields() {
     document.getElementById('dynamicFields').style.display = dynamic ? 'block' : 'none';
 }
 
-// Authors management
-function addAuthor() {
-    const authorsList = document.getElementById('authorsList');
-    const newEntry = document.createElement('div');
-    newEntry.className = 'author-entry';
-    newEntry.innerHTML = `
-        <input type="text" name="authors[]" placeholder="LastName, FirstName" required>
-        <button type="button" class="mf-btn-remove" onclick="removeAuthor(this)">Remove</button>
-    `;
-    authorsList.appendChild(newEntry);
+// Generic list generator
+function addListItem(containerId, schema, className, title = null) {
+    const container = document.getElementById(containerId);
+
+    const entry = document.createElement("div");
+    entry.className = className;
+
+    let html = "";
+
+    if (title) {
+        html += `<div class="mf-subject-header">${title}</div>`;
+    }
+
+    html += `<div class="mf-fields">`;
+
+    schema.forEach(field => {
+
+        const dependsAttr = field.dependsOn
+            ? `data-depends-field="${field.dependsOn.field}"
+            data-depends-value='${JSON.stringify(field.dependsOn.values || field.dependsOn.value)}'`
+            : "";
+
+        if (field.type === "select") {
+            html += `
+                <div class="mf-field-row" data-field="${field.name}" ${dependsAttr}>
+                    <select name="${field.name}[]">
+                        ${field.options.map(opt => `
+                            <option value="${opt}">${opt}</option>
+                        `).join("")}
+                    </select>
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="mf-field-row" data-field="${field.name}" ${dependsAttr}>
+                    <input type="${field.type}"
+                        name="${field.name}[]"
+                        placeholder="${field.placeholder || ""}">
+                </div>
+            `;
+        }
+    });
+
+    html += `
+        <button type="button" class="mf-btn-remove" onclick="this.parentElement.parentElement.remove()">
+            Remove
+        </button>
+    </div>`;
+
+    entry.innerHTML = html;
+    container.appendChild(entry);
+    setupConditionalFields(entry);
 }
 
-function removeAuthor(button) {
-    button.parentElement.remove();
+// Conditional fields
+function setupConditionalFields(entry) {
+
+    const allFields = entry.querySelectorAll("[data-field]");
+
+    function update() {
+        allFields.forEach(fieldRow => {
+
+            const dependsField = fieldRow.dataset.dependsField;
+            const dependsValue = fieldRow.dataset.dependsValue;
+
+            if (!dependsField) return;
+
+            const controller = entry.querySelector(`[name="${dependsField}[]"]`);
+            if (!controller) return;
+
+            // 🔥 NEW: support multiple values
+            let isVisible = false;
+
+            try {
+                const allowed = JSON.parse(dependsValue);
+
+                if (Array.isArray(allowed)) {
+                    isVisible = allowed.includes(controller.value);
+                } else {
+                    isVisible = controller.value === dependsValue;
+                }
+            } catch {
+                // fallback for single value
+                isVisible = controller.value === dependsValue;
+            }
+
+            fieldRow.style.display = isVisible ? "flex" : "none";
+
+            const input = fieldRow.querySelector("input, select");
+            if (input) input.disabled = !isVisible;
+        });
+    }
+
+    entry.querySelectorAll("select, input").forEach(el => {
+        el.addEventListener("change", update);
+    });
+
+    update();
 }
+
+// Authors management
+const authorSchema = [
+    { name: "author", type: "text", placeholder: "LastName, FirstName" }
+];
+
+function addAuthor() {
+    addListItem("authorsList", authorSchema, "author-entry");
+}
+
+// Ethics approvals
+const ethicsSchema = [
+    { name: "ethics", type: "text", placeholder: "Institution (Approval ID)" }
+];
+
+function addEthics() {
+    addListItem("ethicsList", ethicsSchema, "ethics-entry");
+}
+
+// Funding sources
+const fundingSchema = [
+    { name: "funding", type: "text", placeholder: "Funding agency (Grant ID)" }
+];
+
+function addFunding() {
+    addListItem("fundingList", fundingSchema, "funding-entry");
+}
+
+// Funding sources
+const referenceSchema = [
+    { name: "reference", type: "text", placeholder: "e.g., your publication related to the dataset" }
+];
+
+function addReference() {
+    addListItem("referencesList", referenceSchema, "reference-entry");
+}
+
+// Subjects management
+const subjectSchema = [
+    { name: "participant_id", type: "text", placeholder: "Unique subject ID, e.g., 01" },
+    { name: "sex", type: "select", options: ["female", "male", "other", "n/a"]},
+    { name: "age", type: "number", placeholder: "Age in years" },
+    { name: "height", type: "number", placeholder: "Height in cm" },
+    { name: "weight", type: "number", placeholder: "Weight in kg" },
+    { name: "handedness", type: "select", options: ["left handedness", "right handedness", "n/a"]},
+    { name: "group", type: "text", placeholder: "Experimentale.g., patients or controls"}
+];
+
+function addSubject() {
+    addListItem("subjectsList", subjectSchema, "mf-subject-entry", "Subject");
+}
+
+// Coordinate systems
+const coordSchema = [
+    { name: "type", type: "select", options: ["anatomical", "grid"], placeholder: "Coordinate system type"},
+    { name: "name", type: "text", placeholder: "Coordinate system name, e.g., lowerLeg or grid1" },
+    { name: "description", type: "text" , placeholder: "Describes origin and positive axis directions relative to anatomical landmarks."},
+    { name: "units", type: "select", options: ["m", "cm", "mm", "percent", "n/a"], placeholder: "Unit"},
+
+    { name: "parent", type: "text", dependsOn: { field: "type", value: ["grid"] }, placeholder: "The name of the parent (anatomical) coordinate system"},
+    { name: "anchor_coords", type: "text", dependsOn: { field: "type", value: ["grid"] }, placeholder: "Coordinates of the AnchorElectrode" },
+    { name: "anchor_electrode", type: "text", dependsOn: { field: "type", value: ["grid"] }, placeholder: "Name of the AnchorElectrode" }
+];
+
+function addCoord() {
+    addListItem("coordList", coordSchema, "mf-misc-entry", "coord_systems");
+}
+
+// MISC channels
+const miscSchema = [
+    { name: "name", type: "text", placeholder: "None EMG channels, e.g., torque or requested task profile" },
+    { name: "units", type: "select", options: ["V", "mV", "uV", "percent MVC", "percent MVC / s", "N", "Nm", "m", "m/s", "m/s^2", "other", "n/a"], placeholder: "Unit of the measurement, e.g., V or % MVC"},
+    { name: "myunits", type: "text", dependsOn: {field: "units", value: ["other"]}, placeholder: "Add your unit"}
+];
+
+function addMISC() {
+    addListItem("miscList", miscSchema, "mf-misc-entry", "MISC");
+}
+
+// HDsEMG arrays
+const refElectrodeSchema = [
+    { name: "name", type: "text", placeholder: "Unique electrode name, e.g. R1"},
+    { name: "type", type: "select", options: ["band", "ring", "other"]},
+    { name: "mytype", type: "text", dependsOn: { field: "type", value: ["other"]}, placeholder: "Specify the type of your electrode"} ,
+    { name: "manufacturer", type: "text", placeholder: "Electrode manufacturer, e.g., OTBioelettronica" },
+    { name: "manufacturersModelName", type: "text", placeholder: "Manufacturer's model name, e.g., GR04MM1305"},
+    { name: "material", type: "text", placeholder: "Electrode material, e.g., textile"},
+    { name: "coord_system", type: "text", placeholder: "Coordinate system used to describe elecrode position, e.g., lowerLeg"},
+    { name: "x", type: "number", placeholder: "x coordinate"},
+    { name: "y", type: "number", placeholder: "y coordinate"},
+    { name: "z", type: "number", placeholder: "z coordinate"}
+];
+
+function addRefElectrode() {
+    addListItem("refElectrodeList", refElectrodeSchema, "mf-misc-entry", "refElectrodes");
+}
+
+// HDsEMG arrays
+const surfaceEMGSchema = [
+    { name: "name", type: "text", placeholder: "Unique electrode name, e.g. grid1"},
+    { name: "montage", type: "select", options: ["monopolar", "bipolar"]},
+    { name: "manufacturer", type: "text", placeholder: "Electrode manufacturer, e.g., OTBioelettronica" },
+    { name: "manufacturersModelName", type: "text", placeholder: "Manufacturer's model name, e.g., GR04MM1305"},
+    { name: "interelectrode_distance", type: "number", min: 0, step:0.1, placeholder: "Interelectrode distance in mm"},
+    { name: "numChannels", type: "number", min:1, step:1, placeholder: "Number of channels in that grid"},
+    { name: "material", type: "text", placeholder: "Electrode material, e.g., gold or Ag/AgCl"},
+    { name: "targetMuscle", type: "text", placeholder: "Muscle (or muscle group) the electrode records from, e.g., right tibialis anterior"},
+    { name: "lowCutOff", type: "number", placeholder: "Cut-off frequency of the low pass filter in Hz"},
+    { name: "highCutOff", type: "number", placeholder: "Cut-off frequency of the high pass filter in Hz"},
+    { name: "reference", type: "text", dependsOn: { field: "montage", value: ["monopolar"]}, placeholder: "Name of the electrode used for referencing"},
+    { name: "coord_system", type: "text", placeholder: "Coordinate system used to describe elecrode position, e.g., grid1"},
+    { name: "x", type: "text", placeholder: "list of x coordinates, e.g. 0, 4, 8, 12, 12, 8, 4, 0"},
+    { name: "y", type: "text", placeholder: "list of y coordinates, e.g. 0, 0, 0, 0, 4, 4, 4, 4"},
+    { name: "z", type: "text", placeholder: "list of z coordinates, or n/a"}
+];
+
+function addSurfaceEMG() {
+    addListItem("surfaceEMGList", surfaceEMGSchema, "mf-misc-entry", "surfaceEMG");
+}
+
+// Tasks
+const taskSchema = [
+    { name: "taskName", type: "text", placeholder: "Unique task label, e.g., isometricContraction." },
+    { name: "taskDescription", type: "text", placeholder: "Longer free-text description of the task."},
+    { name: "taskInstructions", type: "text", placeholder: "Instructions given to participants before the recording."},
+    { name: "taskRuns", type: "number", placeholder: "Number of repetitions.", min: 1, step: 1}
+];
+
+function addTask() {
+    addListItem("taskList", taskSchema, "mf-task-entry", "task");
+}
+
 
 // Get the list of visible section numbers (data-section attributes) for navigation
 function getVisibleSections() {
@@ -225,15 +441,15 @@ function validateSection(sectionNumber) {
         }
     }
 
-    if (sectionNumber === 6) {
-        const contractionChecked = document.querySelector(
-            '#contractionIsometric:checked, #contractionConcentric:checked, #contractionEccentric:checked, #contractionMixed:checked'
-        );
-        if (!contractionChecked) {
-            alert('Please select at least one contraction type');
-            return false;
-        }
-    }
+    //if (sectionNumber === 6) {
+    //    const contractionChecked = document.querySelector(
+    //        '#contractionIsometric:checked, #contractionConcentric:checked, #contractionEccentric:checked, #contractionMixed:checked'
+    //    );
+    //    if (!contractionChecked) {
+    //        alert('Please select at least one contraction type');
+    //        return false;
+    //    }
+    //}
 
     return isValid;
 }
@@ -263,19 +479,23 @@ function generateReview() {
     html += `<p><strong>Decomposition Method:</strong> ${data.decompositionMethod || 'N/A'}</p>`;
 
     reviewSummary.innerHTML = html;
-    generateBIDSPreview(data);
+    getBIDS_datasetJson(data);
+    getBIDS_subjectsTSV(data);
+    getBIDS_emgJson(data);
+    getBIDS_channelsTSV(data);
 }
 
-function generateBIDSPreview(data) {
+function getBIDS_datasetJson(data) {
     const bids = {
         "Name": data.datasetName || "",
         "BIDSVersion": "1.11.1",
         "DatasetType": "raw",
         "License": data.license || "",
-        "Authors": getAuthors(),
+        "Authors": getArrayField("author", { emptyValue: "" }),
         "Acknowledgements": data.fundingSources || "",
-        "Funding": data.fundingSources ? [data.fundingSources] : [],
-        "EthicsApprovals": [data.ethicsApprovalNumber || ""],
+        "Funding": getArrayField("funding", { emptyValue: "" }),
+        "ReferencesAndLinks": getArrayField("reference", { emptyValue: "" }),
+        "EthicsApprovals": getArrayField("ethics", { emptyValue: "" }),
         "InstitutionName": data.institutionName || "",
         "InstitutionAddress": data.institutionAddress || "",
         "GeneratedBy": [
@@ -285,29 +505,96 @@ function generateBIDSPreview(data) {
                 "Description": "Assisted manual metadata annotaion"
             }
         ],
-        "TaskName": data.taskName || "n/a",
-        "TaskDescription": data.taskDescription || "n/a",
+    };
+    document.getElementById('bidsDatasetPreview').textContent = JSON.stringify(bids, null, 2);
+}
+
+function getBIDS_emgJson(data) {
+    const bids = {
+        "TaskName": data.taskName[0] || "n/a", // TODO
+        "TaskDescription": data.taskDescription[0] || "n/a", // TODO
         "Manufacturer": data.manufacturer || "n/a",
         "ManufacturersModelName": data.manufacturerModel || "n/a",
-        "SamplingFrequency": parseFloat(data.samplingFrequency) || null,
-        "PowerLineFrequency": data.powerLineFrequency || "n/a",
+        "SamplingFrequency": parseFloat(data.samplingFrequency) || "n/a",
+        "PowerLineFrequency": parseFloat(data.powerLineFrequency) || "n/a",
         "HardwareFilters": {
-            "HighPassFilter":  parseFloat(data.highPassFilters) || "n/a",
-            "LowPassFilter":  parseFloat(data.lowPassFilters) || "n/a"
+            "HighPassFilter":  parseFloat(data.highPassFilter) || "n/a",
+            "LowPassFilter":  parseFloat(data.lowPassFilter) || "n/a"
         },
         "EMGChannelCount": parseInt(data.emgChannelCount) || null,
         "EMGReference": data.emgReference || "n/a",
         "EMGGround": data.emgGround || "n/a"
     };
-    document.getElementById('bidsMetadataPreview').textContent = JSON.stringify(bids, null, 2);
+    document.getElementById('bidsEMGPreview').textContent = JSON.stringify(bids, null, 2);
 }
 
-function getAuthors() {
-    const authors = [];
-    document.querySelectorAll('input[name="authors[]"]').forEach(input => {
-        if (input.value.trim()) authors.push(input.value.trim());
+function getBIDS_subjectsTSV(data) {
+    const participant_id = data.participant_id || [];
+    const ages = data.subjects_age || [];
+    const heights = data.subjects_height || [];
+    const weights = data.subjects_weight || [];
+
+    const length = Math.max(participant_id.length, ages.length, heights.length, weights.length);
+    //const length = Math.max(ages.length, heights.length, weights.length);
+
+    const subjects = [];
+
+    for (let i = 0; i < length; i++) {
+        subjects.push({
+            participant_id: `sub-${participant_id[i]}` || "",
+            age: ages[i] || "n/a",
+            height: heights[i] || "n/a",
+            weight: weights[i] || "n/a"
+        });
+    }
+
+    let tsv = "participant_id\tage\theight\tweight\n";
+
+    subjects.forEach((s, index) => {
+        tsv += [
+            s.participant_id,
+            s.age,
+            s.height,
+            s.weight
+        ].join("\t") + "\n";
     });
-    return authors;
+
+    document.getElementById('bidsSubjectsPreview').textContent = tsv;
+}
+
+function getBIDS_channelsTSV(data) {
+
+    const channels = [];
+
+    // TODO fill with meaningfull content
+    for (let i = 0; i < length; i++) {
+        channels.push({
+            name: "Ch000",
+            type: "EMG",
+            units: "mV",
+        });
+    }
+
+    let tsv = "name\ttype\tunits\n";
+
+    channels.forEach((c, index) => {
+        tsv += [
+            c.name,
+            c.type,
+            c.units,
+        ].join("\t") + "\n";
+    });
+
+    document.getElementById('bidsChannelsPreview').textContent = tsv;
+}
+
+// Collect all form data from an array field
+function getArrayField(fieldName, { emptyValue = "n/a" } = {}) {
+    return Array.from(document.querySelectorAll(`[name="${fieldName}[]"]`))
+        .map(el => {
+            const val = el.value?.trim?.() ?? el.value;
+            return val ? val : emptyValue;
+        });
 }
 
 // Collect all form data into a plain object
