@@ -2,18 +2,46 @@
 ---
 
 /* -------------------------
+   COLOR PALETTE
+------------------------- */
+:root {
+  --color-slate-blue:  #6667AA;
+  --color-cherry-rose: #A4303F;
+  --color-grey-olive:  #919090;
+}
+
+/* -------------------------
+   LOGO SIZE
+------------------------- */
+a.logo img {
+  height: 3.5rem;
+  width: auto;
+}
+
+/* -------------------------
+   NAV MENU
+------------------------- */
+.item--nav a {
+  color: var(--color-slate-blue) !important;
+}
+
+.item--current a {
+  color: var(--color-cherry-rose) !important;
+}
+
+/* -------------------------
    HEADER COLORS
 ------------------------- */
 h1, h2, h3, h4, h5, h6 {
-  color: #0b3d91; /* dark blue */
+  color: var(--color-slate-blue);
 
   a {
-    color: inherit;           // links inherit the header color by default
-    text-decoration: none;    // remove underline initially
+    color: inherit;
+    text-decoration: none;
 
     &:hover {
-      color: #ff6600;         // color when hovering
-      text-decoration: underline; // optional: underline on hover
+      color: var(--color-cherry-rose);
+      text-decoration: underline;
     }
   }
 }
@@ -40,8 +68,22 @@ body {
    LINKS
 ------------------------- */
 a {
-  color: #0b3d91;               /* link text color */
-  text-decoration: none;   /* ensure no line is under the link */
+  color: var(--color-slate-blue);
+}
+
+.typeset p a,
+.typeset li a {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, var(--color-slate-blue) 50%);
+}
+
+.typeset p a:hover,
+.typeset p a:active,
+.typeset p a:focus,
+.typeset li a:hover,
+.typeset li a:active,
+.typeset li a:focus {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, var(--color-cherry-rose) 50%);
+  color: var(--color-cherry-rose);
 }
 
 /* -------------------------
@@ -68,13 +110,12 @@ p {
    TABLE BORDERS
 --------------------------*/
 .typeset table th,
-// .typeset table td {
-//   border: 1px solid #ccc;
-//   padding: 0.4rem 0.8rem;
-// }
+.typeset table td {
+  padding: 0.4rem 0.8rem;
+}
 
 .typeset table thead th {
-  border-bottom: 1px solid #000000;
+  border-bottom: 2px solid #000;
 }
 
 /* -------------------------

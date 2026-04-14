@@ -45,8 +45,7 @@ Since the development of the concentric needle by Adrian and Bronk nearly 100 ye
 
 <p float="left">
   <img src="/Images/imperial_logo.png" width="200" />
-  <img src="/Images/logo_empty.jpeg" width="30" />
-  <img src="/Images/UniStuttgartLogo.png" width="200" />
+  <img src="/Images/UniStuttgartLogo.png" width="200" style="margin-left: 20px;" />
 </p>
 
 - Institute for Modelling and Simulation of Biomechanical Systems, University of Stuttgart
@@ -55,9 +54,8 @@ Since the development of the concentric needle by Adrian and Bronk nearly 100 ye
 ### Partners and supporters
 
 <p float="left">
-  <img src="/Images/isek_logo.png" width="200"/>
-  <img src="/Images/logo_empty.jpeg" width="30" />
-  <img src="/Images/motor_neuron_society_logo.png" width="200"/>
+  <img src="/Images/isek_logo.png" width="140"/>
+  <img src="/Images/motor_neuron_society_logo.png" width="200" style="margin-left: 20px;" />
 </p>
 
 - Become a partner! Get in touch ([📧](mailto:MUnitQuest@outlook.com)) if you want to contribute to our efforts 🙏

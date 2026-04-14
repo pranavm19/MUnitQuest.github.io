@@ -33,7 +33,7 @@ baseurl: ''
 title: 'MUnitQuest'
 description: 'Competition on motor unit idendification'
 permalink: pretty
-logo: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/logo_empty.jpeg" # logo in top left 
+logo: "/Images/logo_lowres.png" # logo in top left
 
 # Pagination
 paginate: 5 # number of blog posts shown at once 
@@ -59,6 +59,19 @@ navigation_header:
 #  url: /faq/
 #- title: Legal Notice
 #  url: /legalNotice/
+
+# Default layout for all pages
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
 # Footer nav
 navigation_footer:
