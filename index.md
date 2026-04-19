@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  Welcome to MUnitQuest!
-feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/header2.jpeg"
+feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/header.jpeg"
 ---
 
 
@@ -46,7 +46,7 @@ With support from the International Society of Electrophysiology and Kinesiology
 
 <p float="left">
   <img src="/Images/imperial_logo.png" width="200" />
-  <img src="/Images/UniStuttgartLogo.png" width="200" style="margin-left: 20px;" />
+  <img src="/Images/uni_stuttgart_logo.png" width="200" style="margin-left: 20px;" />
 </p>
 
 - Institute for Modelling and Simulation of Biomechanical Systems, University of Stuttgart
