@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Registration and submissions
-feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/header.jpeg"
+feature_image: "/Images/header.jpeg"
 feature_text: 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Metadata Form
-feature_image: "https://raw.githubusercontent.com/MUnitQuest/MUnitQuest.github.io/refs/heads/main/Images/header.jpeg"
+feature_image: "/Images/header.jpeg"
 layout: page
 ---
 
